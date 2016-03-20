@@ -52,7 +52,7 @@ script:
   - cd extra
   - git clone https://github.com/regnirpsj/hugh-support.git hugh-support
   - cd hugh-support && mkdir build && cd build
-  - cmake -DVERBOSE=1 .. && cmake --build . --target test_all && cmake --build . --target install
+  - cmake -DVERBOSE=0 .. && cmake --build . --target install
   - cd ../../..
   - mkdir build && cd build
-  - cmake -DVERBOSE=1 .. && cmake --build . --target test_all && cmake --build . --target install
+  - cmake -DVERBOSE=1 .. && cmake --build . --target test_all
