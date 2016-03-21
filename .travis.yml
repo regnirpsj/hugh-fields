@@ -43,14 +43,14 @@ script:
   - export CC=$MATRIX_CC
   - export CXX=$MATRIX_CXX
   - mkdir extra && cd extra
-  - git clone https://github.com/g-truc/gli.git gli-git
-  - git clone https://github.com/g-truc/glm.git glm-git
+  - git clone http://github.com/g-truc/gli.git gli-git
+  - git clone http://github.com/g-truc/glm.git glm-git
   - cd ..
   - export GLI_ROOT_DIR=`pwd`/extra/gli-git
   - export GLM_ROOT_DIR=`pwd`/extra/glm-git
   - export HUGH_INSTALL_PREFIX=`pwd`/install
   - cd extra
-  - git clone https://github.com/regnirpsj/hugh-support.git hugh-support
+  - git clone http://github.com/regnirpsj/hugh-support.git hugh-support
   - cd hugh-support && mkdir build && cd build
   - cmake -DVERBOSE=0 .. && cmake --build . --target install
   - cd ../../..
