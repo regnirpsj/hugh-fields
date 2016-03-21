@@ -1,0 +1,21 @@
+// -*- Mode:C++ -*-
+
+/**************************************************************************************************/
+/*                                                                                                */
+/* Copyright (C) 2016 University of Hull                                                          */
+/*                                                                                                */
+/**************************************************************************************************/
+/*                                                                                                */
+/*  module     :  hugh/field/version.hpp                                                          */
+/*  project    :                                                                                  */
+/*  description:                                                                                  */
+/*                                                                                                */
+/**************************************************************************************************/
+
+#if !defined(HUGH_FIELD_VERSION_HPP)
+
+#define HUGH_FIELD_VERSION_HPP
+
+#cmakedefine HUGH_FIELDS_VERSION @HUGH_FIELDS_VERSION@
+
+#endif // #if !defined(HUGH_FIELD_VERSION_HPP)
