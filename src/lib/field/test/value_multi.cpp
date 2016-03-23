@@ -37,7 +37,8 @@ namespace {
 #include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_container, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_container, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -47,7 +48,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_container, T, hugh::field::
   BOOST_CHECK(&c == &f.container());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_name, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_name, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -57,7 +59,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_name, T, hugh::field::test:
   BOOST_CHECK("f" == f.name());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_last_change, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_last_change, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -67,7 +70,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_last_change, T, hugh::field
   BOOST_CHECK(hugh::support::clock::now() > f.last_change());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_get, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_get, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -77,7 +81,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_get, T, hugh::field::test::
   BOOST_CHECK(T() == f.get());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_set, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_set, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -88,7 +93,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_set, T, hugh::field::test::
 }
 
 #if !defined(_MSC_VER) || (defined(_MSC_VER) && (_MSC_VER > 1800))
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_set_initlist, T,
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_set_initlist, T,
                               hugh::field::test::multi_types)
 {
   using namespace hugh::field;
@@ -100,7 +105,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_set_initlist, T,
 }
 #endif
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_add, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_add, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -111,7 +117,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_add, T, hugh::field::test::
   BOOST_CHECK(1 == f.get().size());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_sub, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_sub, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -122,7 +129,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_sub, T, hugh::field::test::
   BOOST_CHECK(1 == f.get().size());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_dereference, T,
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_op_dereference, T,
                               hugh::field::test::multi_types)
 {
   using namespace hugh::field;
@@ -133,7 +140,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_dereference, T,
   BOOST_CHECK(T() == *f);
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_assign, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_op_assign, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -144,7 +152,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_assign, T, hugh::field::
 }
 
 #if !defined(_MSC_VER) || (defined(_MSC_VER) && (_MSC_VER > 1800))
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_assign_initlist, T,
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_op_assign_initlist, T,
                               hugh::field::test::multi_types)
 {
   using namespace hugh::field;
@@ -156,7 +164,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_assign_initlist, T,
 }
 #endif
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_add, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_op_add, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   
@@ -168,7 +177,8 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_add, T, hugh::field::tes
   BOOST_CHECK(1 == f.get().size());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_value_multi_op_sub, T, hugh::field::test::multi_types)
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_op_sub, T,
+                              hugh::field::test::multi_types)
 {
   using namespace hugh::field;
   

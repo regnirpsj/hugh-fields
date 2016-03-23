@@ -39,7 +39,7 @@ namespace {
 #include <boost/test/unit_test.hpp>
 #include <boost/test/test_case_template.hpp>
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_connection_update_single, T,
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_connection_update_single, T,
                               hugh::field::test::single_types)
 {
   using namespace hugh::field;
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_connection_update_single, T,
   BOOST_CHECK(T() == f.get());
 }
 
-BOOST_AUTO_TEST_CASE_TEMPLATE(test_field_connection_update_multi, T,
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_connection_update_multi, T,
                               hugh::field::test::multi_types)
 {
   using namespace hugh::field;

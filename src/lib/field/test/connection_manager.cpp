@@ -46,7 +46,7 @@ namespace {
 #define BOOST_TEST_MAIN
 #include <boost/test/unit_test.hpp>
 
-BOOST_AUTO_TEST_CASE(test_field_connection_manager_print)
+BOOST_AUTO_TEST_CASE(test_hugh_field_connection_manager_print)
 {
   using namespace hugh::field;
 
