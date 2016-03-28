@@ -67,7 +67,7 @@ before_script:
   - export LCOV="lcov --gcov-tool ${GCOV}"
   - ${LCOV} --version
   - export HUGH_SUPPORT_ROOT_DIR=${TRAVIS_BUILD_DIR}/extra/hugh-support
-  - git clone --deph 50 http://github.com/regnirpsj/hugh-support.git ${HUGH_SUPPORT_ROOT_DIR}
+  - git clone --depth 50 http://github.com/regnirpsj/hugh-support.git ${HUGH_SUPPORT_ROOT_DIR}
   - export FETCHREPO=${HUGH_SUPPORT_ROOT_DIR}/share/hugh/travis.ci/fetch-or-update-git-repo.sh
   - export GLI_ROOT_DIR=${HOME}/extra/gli-git
   - export GLM_ROOT_DIR=${HOME}/extra/glm-git
