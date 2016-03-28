@@ -97,11 +97,11 @@ namespace hugh {
       os << '['
          << std::right << std::setw(19) << name_
          << '@'
-         << this
-         << "->"
-         << std::hex << &container_
+         << std::hex << std::showbase << this
+         << "->c@"
+         << std::hex << std::showbase << &container_
          << ':'
-         << last_change_
+         << std::dec << last_change_
          << ']';
     }
   

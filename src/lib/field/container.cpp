@@ -255,16 +255,20 @@ namespace hugh {
       std::string prefix(indent, '\t');
       
       os << '\n' << prefix << '['
-         << support::demangle(typeid(*this)) << '@' << this
+         << support::demangle(typeid(*this))
+         << '@'
+         << std::hex << std::showbase << this
          << ":["
-         << last_change_ << ':' << last_evaluate_
+         << std::dec << last_change_
+         << ':'
+         << std::dec << last_evaluate_
          << "],";
 
       ++indent;
       {
         prefix += ' ';
       
-        for (auto const f : field_list_) {
+        for (auto const& f : field_list_) {
           os << '\n' << prefix << std::boolalpha << *f;
         }
       
