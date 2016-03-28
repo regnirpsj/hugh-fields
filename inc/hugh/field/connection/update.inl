@@ -91,7 +91,7 @@ namespace hugh {
         
           typename T2::value_container_type tmp(d->get());
 
-          tmp.insert(s->get(), tmp.begin());
+          tmp.insert(tmp.begin(), s->get());
 
           d->set(tmp);
         }
