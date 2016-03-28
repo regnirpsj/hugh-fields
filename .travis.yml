@@ -5,7 +5,6 @@ language: cpp
 
 cache:
   apt: true
-  ccache: true
   directories:
     - ${HOME}/extra
 
@@ -78,6 +77,8 @@ before_script:
   - cmake .. && cmake --build . --target install
 
 script:
+  - cd ${TRAVIS_BUILD_DIR}
+  - ${LCOV} --directory . --zerocounters
   - cd ${TRAVIS_BUILD_DIR}/build
   - cmake -DVERBOSE=1 -DHUGH_SUPPORT_COVERAGE=1 .. && cmake --build . --target test_all
 
