@@ -4,6 +4,8 @@ Hull University Graphics Helper (HUGH) Field/Container
 
 .. image:: https://travis-ci.org/regnirpsj/hugh-fields.svg?branch=master
    :target: https://travis-ci.org/regnirpsj/hugh-fields
+.. image:: https://coveralls.io/repos/github/regnirpsj/hugh-fields/badge.svg?branch=master
+   :target: https://coveralls.io/github/regnirpsj/hugh-fields?branch=master
 
 :Author: Jan P Springer <regnirpsj@gmail.com>
 
