@@ -67,14 +67,14 @@ before_script:
   - export LCOV="lcov --gcov-tool ${GCOV}"
   - ${LCOV} --version
   - git clone http://github.com/regnirpsj/hugh-support.git ${TRAVIS_BUILD_DIR}/extra/hugh-support
-  - cd ${TRAVIS_BUILD_DIR}/extra/hugh-support && mkdir build && cd build
-  - export HUGH_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install
-  - cmake .. && cmake --build . --target install
   - export FETCHREPO=${TRAVIS_BUILD_DIR}/share/hugh/travis.ci/fetch-or-update-git-repo.sh
   - export GLI_ROOT_DIR=${HOME}/extra/gli-git
   - export GLM_ROOT_DIR=${HOME}/extra/glm-git
   - ${FETCHREPO} http://github.com/g-truc/gli.git ${GLI_ROOT_DIR}
   - ${FETCHREPO} http://github.com/g-truc/glm.git ${GLM_ROOT_DIR}
+  - cd ${TRAVIS_BUILD_DIR}/extra/hugh-support && mkdir build && cd build
+  - export HUGH_INSTALL_PREFIX=${TRAVIS_BUILD_DIR}/install
+  - cmake .. && cmake --build . --target install
 
 script:
   - cd ${TRAVIS_BUILD_DIR}/build
