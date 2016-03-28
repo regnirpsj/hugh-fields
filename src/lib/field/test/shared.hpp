@@ -147,6 +147,7 @@ namespace hugh {
         ,double
         ,long double
         ,std::string
+        ,std::wstring
         ,glm::mat4
         ,glm::vec3
 #endif
@@ -171,6 +172,7 @@ namespace hugh {
         ,std::vector<double>
         ,std::vector<long double>
         ,std::vector<std::string>
+        ,std::vector<std::wstring>
         ,std::vector<glm::mat4>
         ,std::vector<glm::vec3>
 #endif
