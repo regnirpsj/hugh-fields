@@ -80,7 +80,7 @@ script:
   - cd ${TRAVIS_BUILD_DIR}
   - ${LCOV} --directory . --zerocounters
   - cd ${TRAVIS_BUILD_DIR}/build
-  - cmake -DVERBOSE=1 -DHUGH_SUPPORT_COVERAGE=1 .. && cmake --build . --target test_all
+  - cmake -DVERBOSE=1 -DHUGH_FIELDS_COVERAGE=1 .. && cmake --build . --target test_all
 
 after_success:
   - cd ${TRAVIS_BUILD_DIR}/build
