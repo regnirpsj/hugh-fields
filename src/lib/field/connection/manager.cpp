@@ -238,19 +238,9 @@ namespace hugh {
       {
         TRACE_NEVER("hugh::field::connection::manager::status");
 
-        std::ostringstream ostr;
+        std::ostringstream result;
 
-        print_on(ostr);
-
-        return ostr.str();
-      }
-    
-      /* virtual */ void
-      manager::print_on(std::ostream& os) const
-      {
-        TRACE_NEVER("hugh::field::connection::manager::print_on");
-      
-        os << "[\n"
+        result << "[\n"
            << std::string(2, '-') << " sources " << std::string(99, '-') << '\n';
       
         for (auto const f : connection_map_) {
@@ -265,10 +255,10 @@ namespace hugh {
           print_helper<dst, src>(f.get<src>(), ostr);
 #endif
         
-          os << ostr.str() << '\n';
+          result << ostr.str() << '\n';
         }
 
-        os << std::string(2, '-') << " destinations " << std::string(94, '-') << '\n';
+        result << std::string(2, '-') << " destinations " << std::string(94, '-') << '\n';
       
         for (auto const f : connection_map_) {
           std::ostringstream ostr;
@@ -282,17 +272,18 @@ namespace hugh {
           print_helper<src, dst>(f.get<dst>(), ostr);
 #endif
         
-          os << ostr.str() << '\n';
+          result << ostr.str() << '\n';
         }
       
-        os << ']';
-      }
+        result << ']';
+        
+        return result.str();
+      }    
     
       /* explicit */
       manager::manager(boost::restricted)
-        : support::printable               (),
-          boost::mutexed_singleton<manager>(),
-        connection_map_                  ()
+        : boost::mutexed_singleton<manager>(),
+          connection_map_                  ()
       {
         TRACE("hugh::field::connection::manager::manager");
       }

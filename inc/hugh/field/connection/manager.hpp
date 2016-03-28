@@ -40,8 +40,7 @@ namespace hugh {
     
       // types, exported (class, enum, struct, union, typedef)
 
-      class HUGH_FIELD_EXPORT manager : public support::printable,
-                                        public boost::mutexed_singleton<manager> {
+      class HUGH_FIELD_EXPORT manager : public boost::mutexed_singleton<manager> {
 
         BOOST_SINGLETON_PLACEMENT_DECLARATION;
       
@@ -57,8 +56,6 @@ namespace hugh {
         bool update    (field_type* const    /* src     */);
       
         std::string status() const;
-      
-        virtual void print_on(std::ostream&) const;
       
       private:
 
