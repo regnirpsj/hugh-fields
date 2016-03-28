@@ -14,7 +14,7 @@
 
 // includes, system
 
-//#include <>
+#include <sstream> // std::ostringstream
 
 // includes, project
 
@@ -188,4 +188,18 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_op_sub, T,
   f -= typename T::value_type();
   
   BOOST_CHECK(1 == f.get().size());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_print_on, T,
+                              hugh::field::test::multi_types)
+{
+  using namespace hugh::field;
+  
+  test::container_multi<T>             c;
+  value::multi<typename T::value_type> f(c, "f", T(2));
+  std::ostringstream                   ostr;
+
+  ostr << c;
+
+  BOOST_CHECK(!ostr.str().empty());
 }

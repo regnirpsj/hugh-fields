@@ -14,7 +14,7 @@
 
 // includes, system
 
-//#include <>
+#include <sstream> // std::ostringstream
 
 // includes, project
 
@@ -282,4 +282,25 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_adapter_multi_op_sub, T,
   f -= typename T::value_type();
   
   BOOST_CHECK(true == f.get().empty());
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_adapter_multi_print_on, T,
+                              hugh::field::test::multi_types)
+{
+  using namespace hugh::field;
+  
+  test::container_multi<T>               c;
+  adapter::multi<typename T::value_type> f(c, "f",
+                                           std::bind(&test::container_multi<T>::cb_get, &c),
+                                           std::bind(&test::container_multi<T>::cb_set, &c,
+                                                     std::placeholders::_1),
+                                           std::bind(&test::container_multi<T>::cb_add, &c,
+                                                     std::placeholders::_1),
+                                           std::bind(&test::container_multi<T>::cb_sub, &c,
+                                                     std::placeholders::_1));
+  std::ostringstream                       ostr;
+
+  ostr << c;
+
+  BOOST_CHECK(!ostr.str().empty());
 }

@@ -14,7 +14,7 @@
 
 // includes, system
 
-//#include <>
+#include <sstream> // std::ostringstream
 
 // includes, project
 
@@ -112,4 +112,18 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_single_op_assign, T,
   value::single<T>          f(c, "f");
   
   BOOST_CHECK(T() == *(f = T()));
+}
+
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_single_print_on, T,
+                              hugh::field::test::single_types)
+{
+  using namespace hugh::field;
+  
+  test::container_single<T> c;
+  value::single<T>          f(c, "f");
+  std::ostringstream        ostr;
+
+  ostr << c;
+
+  BOOST_CHECK(!ostr.str().empty());
 }
