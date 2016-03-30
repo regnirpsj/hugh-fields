@@ -24,6 +24,7 @@
 #include <hugh/field/adapters.hpp>
 #include <hugh/field/container.hpp>
 #include <hugh/field/values.hpp>
+#include <hugh/support/chrono_io.hpp>
 
 // internal unnamed namespace
 
@@ -74,6 +75,18 @@ namespace {
 #else
       maf_unsigned = unsigned_list_type(4, 1);
 #endif
+    }
+
+    bool needs_evaluation() const
+    {
+      return (support::clock::resolution < (last_change_ - last_evaluate_));
+    }
+    
+  protected:
+
+    virtual void do_evaluate()
+    {
+      field::container::do_evaluate();
     }
     
   private:
@@ -170,11 +183,26 @@ BOOST_AUTO_TEST_CASE(test_hugh_field_container_mgr)
     }
   };
 
-  for (auto const& a : c){
-    BOOST_CHECK(true == *a.svf_bool);
+  {
+    for (auto const& a : c) {
+      BOOST_CHECK       (true == *a.svf_bool);
+      BOOST_TEST_MESSAGE(std::boolalpha << a);
+    }
   }
-  
-  BOOST_TEST_MESSAGE(std::boolalpha << c[c.size()-1]);
+
+  {
+    container::manager& cmgr(container::eval_manager());
+    
+    BOOST_TEST_MESSAGE("evalmgr: " << cmgr);
+    
+    cmgr.evaluate();
+    
+    for (auto const& a : c) {
+      BOOST_CHECK(!a.needs_evaluation());
+    }
+    
+    BOOST_TEST_MESSAGE("evalmgr: " << cmgr);
+  }
 }
 
 BOOST_AUTO_TEST_CASE(test_hugh_field_container_fields)
@@ -183,11 +211,11 @@ BOOST_AUTO_TEST_CASE(test_hugh_field_container_fields)
   
   BOOST_CHECK(true == *c.svf_bool);
 
-  container::field_list_type const& flist(c.fields());
+  unsigned i(0);
   
-  for (unsigned i(0); i < flist.size(); ++i){
-    BOOST_TEST_MESSAGE(std::right << std::setw(2) << i << ':' << *(flist[i]));
+  for (auto const& f : c.fields()) {
+    BOOST_TEST_MESSAGE(std::right << std::setw(2) << i++ << ':' << *f);
   }
   
-  BOOST_TEST_MESSAGE("evalmgr: " << c.eval_manager());
+  BOOST_TEST_MESSAGE("evalmgr: " << container::eval_manager());
 }
