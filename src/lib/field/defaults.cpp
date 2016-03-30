@@ -43,11 +43,11 @@ namespace {
 
 #if defined(HUGH_FIELD_DEFAULT_SPECIALIZATIONS)
 
-#  define DEFAULT_FIELD_TYPES_FOR(type)           \
-  template class field::value::multi   <type>;    \
-  template class field::value::single  <type>;    \
-  template class field::adapter::multi <type>;    \
-  template class field::adapter::single<type>
+#  define DEFAULT_FIELD_TYPES_FOR(type)              \
+  template class HUGH_FIELD_EXPORT hugh::field::value::multi   <type>; \
+  template class HUGH_FIELD_EXPORT hugh::field::value::single  <type>; \
+  template class HUGH_FIELD_EXPORT hugh::field::adapter::multi <type>; \
+  template class HUGH_FIELD_EXPORT hugh::field::adapter::single<type>
 
 DEFAULT_FIELD_TYPES_FOR(         bool);
 DEFAULT_FIELD_TYPES_FOR(signed   char);
