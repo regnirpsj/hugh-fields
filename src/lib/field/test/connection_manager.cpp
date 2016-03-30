@@ -93,28 +93,42 @@ BOOST_AUTO_TEST_CASE(test_hugh_field_connection_manager_print)
       using connection::update::average;
       
       test::container_single<float> cf;
-      value::multi<float>           f6(cf, "f6", { 1, 2, 3, });
+      {
+        value::multi<float> f4(cf, "f4", { 1, 2, 3, });
+        
+        BOOST_CHECK(connect(&f4, &f3, make_function(f4, f3, average)));
+        
+        f4.touch();
+        
+        BOOST_CHECK(2 == f3.get());
+        
+        BOOST_TEST_MESSAGE(cml->status());
+      }
       
-      BOOST_CHECK( connect(&f6, &f3, make_function(f6, f3, average)));
-      
-      f6.touch();
-
-      BOOST_CHECK(2 == f3.get());
-      
-      BOOST_TEST_MESSAGE(cml->status());
+      {
+        value::multi<float> f4(cf, "f4");
+        
+        BOOST_CHECK(connect(&f4, &f3, make_function(f4, f3, average)));
+        
+        f4.touch();
+        
+        BOOST_CHECK(0 == f3.get());
+        
+        BOOST_TEST_MESSAGE(cml->status());
+      }
     }
 
     {
       using connection::update::append;
       
       test::container_single<float> cf;
-      value::multi<float>           f6(cf, "f6");
+      value::multi<float>           f4(cf, "f4");
       
-      BOOST_CHECK(connect(&f3, &f6, make_function(f3, f6, append)));
+      BOOST_CHECK(connect(&f3, &f4, make_function(f3, f4, append)));
       
       f3.touch();
 
-      BOOST_CHECK(f3.get() == *(f6.get().rbegin()));
+      BOOST_CHECK(f3.get() == *(f4.get().rbegin()));
       
       BOOST_TEST_MESSAGE(cml->status());
     }
@@ -123,13 +137,13 @@ BOOST_AUTO_TEST_CASE(test_hugh_field_connection_manager_print)
       using connection::update::prepend;
       
       test::container_single<float> cf;
-      value::multi<float>           f6(cf, "f6");
+      value::multi<float>           f4(cf, "f4");
       
-      BOOST_CHECK(connect(&f3, &f6, make_function(f3, f6, prepend)));
+      BOOST_CHECK(connect(&f3, &f4, make_function(f3, f4, prepend)));
       
       f3.touch();
 
-      BOOST_CHECK(f3.get() == *(f6.get().begin()));
+      BOOST_CHECK(f3.get() == *(f4.get().begin()));
       
       BOOST_TEST_MESSAGE(cml->status());
     }
