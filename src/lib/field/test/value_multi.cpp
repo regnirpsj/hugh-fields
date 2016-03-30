@@ -48,6 +48,17 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_container, T,
   BOOST_CHECK(&c == &f.container());
 }
 
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_ctor_throw, T,
+                              hugh::field::test::multi_types)
+{
+  using namespace hugh::field;
+  
+  test::container_multi<T> c;
+  
+  BOOST_REQUIRE_THROW(value::multi<typename T::value_type> const f(c, ""), std::logic_error);
+}
+
+
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_multi_name, T,
                               hugh::field::test::multi_types)
 {

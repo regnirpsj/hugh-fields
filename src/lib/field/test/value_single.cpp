@@ -48,6 +48,16 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_single_container, T,
   BOOST_CHECK(&c == &f.container());
 }
 
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_single_ctor_throw, T,
+                              hugh::field::test::single_types)
+{
+  using namespace hugh::field;
+  
+  test::container_single<T> c;
+  
+  BOOST_REQUIRE_THROW(value::single<T> const f(c, ""), std::logic_error);
+}
+
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_value_single_name, T,
                               hugh::field::test::single_types)
 {

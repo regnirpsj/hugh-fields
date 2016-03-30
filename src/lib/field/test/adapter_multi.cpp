@@ -55,6 +55,26 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_adapter_multi_container, T,
   BOOST_CHECK(&c == &f.container());
 }
 
+BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_adapter_multi_ctor_throw, T,
+                              hugh::field::test::multi_types)
+{
+  using namespace hugh::field;
+  
+  test::container_multi<T> c;
+  
+  BOOST_REQUIRE_THROW(adapter::multi<typename T::value_type> const
+                      f(c, "",
+                        std::bind(&test::container_multi<T>::cb_get, &c),
+                        std::bind(&test::container_multi<T>::cb_set, &c,
+                                  std::placeholders::_1),
+                        std::bind(&test::container_multi<T>::cb_add, &c,
+                                  std::placeholders::_1),
+                        std::bind(&test::container_multi<T>::cb_sub, &c,
+                                  std::placeholders::_1)),
+                      std::logic_error);
+}
+
+
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_adapter_multi_name, T,
                               hugh::field::test::multi_types)
 {
@@ -298,7 +318,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_adapter_multi_print_on, T,
                                                      std::placeholders::_1),
                                            std::bind(&test::container_multi<T>::cb_sub, &c,
                                                      std::placeholders::_1));
-  std::ostringstream                       ostr;
+  std::ostringstream                     ostr;
 
   ostr << c;
 
