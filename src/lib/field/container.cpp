@@ -134,7 +134,11 @@ namespace hugh {
     
       using support::ostream::operator<<;
       
-      os << container_list_;
+      os << '['
+         << container_list_.size()
+         << ':'
+         << container_list_
+         << ']';
     }
 
     /* virtual */ void
@@ -142,7 +146,7 @@ namespace hugh {
     {
       TRACE("hugh::field::container::manager::evaluate");
     
-      for (auto c : container_list_) {
+      for (auto& c : container_list_) {
         c->evaluate();
       }
 
@@ -151,8 +155,8 @@ namespace hugh {
   
     /* explicit */
     container::manager::manager()
-      : support::printable  (),
-        container_list_     ()
+      : support::printable(),
+        container_list_   ()
     {
       TRACE("hugh::field::container::manager::manager");
     }
