@@ -23,6 +23,7 @@
 // includes, project
 
 #include <hugh/field/base.hpp>
+#include <hugh/support/io_utils.hpp>
 #include <hugh/support/type_info.hpp>
 
 #define HUGH_USE_TRACE
@@ -309,7 +310,7 @@ namespace hugh {
           ++current;
         }
     
-        os << "\b }";
+        os << support::ostream::remove(1) << '}';
       }
     
     } // namespace connection {
