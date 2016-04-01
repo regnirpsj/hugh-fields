@@ -1,0 +1,5 @@
+## -*- Mode:Doxygen -*-
+
+@INCLUDE  = @CMAKE_CURRENT_BINARY_DIR@/base.dev.doxygen.cfg
+
+TAGFILES += "@CMAKE_INSTALL_PREFIX@/share/doc/hugh/support/hugh_support.dev.tag.xml=../../../support/dev/html/"
