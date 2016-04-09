@@ -54,7 +54,7 @@ namespace hugh {
       inline /* explicit */
       multi<T,C>::multi(container_type& a, std::string const& b, value_container_type&& c)
         : inherited       (a, b),
-          value_container_(c)
+          value_container_(std::move(c))
       {
         TRACE("hugh::field::value::multi<" + support::demangle(typeid(T)) + "," +
               support::demangle(typeid(C)) + ">::multi(move)");
@@ -117,7 +117,7 @@ namespace hugh {
 
         value_container_type const result(value_container_);
     
-        value_container_ = a;
+        value_container_ = std::move(a);
 
         inherited::changed();
 
@@ -175,7 +175,7 @@ namespace hugh {
         auto const found (std::find(value_container_.begin(), value_container_.end(), a));
 
         if (value_container_.end() == found) {
-          value_container_.insert(value_container_.end(), a);
+          value_container_.insert(value_container_.end(), std::move(a));
 
           inherited::changed();
 

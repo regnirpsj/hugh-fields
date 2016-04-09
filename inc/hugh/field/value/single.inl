@@ -53,7 +53,7 @@ namespace hugh {
       inline /* explicit */
       single<T>::single(container_type& a, std::string const& b, value_type&& c)
         : inherited(a, b),
-          value_   (c)
+          value_   (std::move(c))
       {
         TRACE("hugh::field::value::single<" + support::demangle(typeid(T)) + ">::single(move)");
       }
@@ -97,7 +97,7 @@ namespace hugh {
 
         value_type const result(value_);
     
-        value_ = a;
+        value_ = std::move(a);
 
         inherited::changed();
 
