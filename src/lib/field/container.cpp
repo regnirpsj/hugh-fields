@@ -146,11 +146,13 @@ namespace hugh {
     {
       TRACE("hugh::field::container::manager::evaluate");
 
-      for (auto& c : container_list_) {
+      container_list_type tmp;
+
+      std::swap(container_list_, tmp);
+      
+      for (auto& c : tmp) {
         c->evaluate();
       }
-
-      container_list_.clear();
     }
   
     /* explicit */
