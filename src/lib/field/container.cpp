@@ -43,8 +43,8 @@ namespace {
 
   class dflt_cntnr_mgr : public hugh::field::container::manager {
 
-    using lock_type  = hugh::support::simple_lock;
-    using lock_guard = hugh::support::simple_lock_guard;
+    using lock_type  = hugh::support::recursive_lock;
+    using lock_guard = hugh::support::recursive_lock_guard;
     using inherited  = hugh::field::container::manager;
     
   public:
@@ -145,7 +145,7 @@ namespace hugh {
     container::manager::evaluate()
     {
       TRACE("hugh::field::container::manager::evaluate");
-    
+
       for (auto& c : container_list_) {
         c->evaluate();
       }
