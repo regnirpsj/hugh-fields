@@ -34,19 +34,54 @@ namespace hugh {
   
     // types, exported (class, enum, struct, union, typedef)
 
+    /**
+     * \brief Abstract base class of all fields.
+     *
+     * A field is an interface to \c get or \c set the contained value(s). This abstract base class
+     * is inherited by, which provide the actual specializations:
+     *   - \c hugh::field::single::value<T>
+     *   - \c hugh::field::single::adapter<T>
+     *   - \c hugh::field::multi::value<T>
+     *   - \c hugh::field::multi::adapter<T>
+     *
+     * A field belongs to a \c container where its hase a \c name. Registration and deregistration
+     * with a container are enforced by contstructor and destructor (RAII style)
+     *
+     * A field can be {\c touch}ed, which will act as a \c set operation without an actual change.
+     *
+     * 
+     */
     class HUGH_FIELD_EXPORT base : public support::printable {
 
     public:
 
       using container_type = field::container;
       using time_point     = support::clock::time_point;
-    
+
+      /**
+       * \brief Returns the c\ container instance this field belongs to.
+       */
       container_type const& container() const;
-      std::string const&    name() const;
-      time_point const&     last_change() const;
-    
+
+      /**
+       * \brief Returns the field's name.
+       */
+      std::string const& name() const;
+
+      /**
+       * \brief Returns the \c time_point the field was changed last.
+       */      
+      time_point const& last_change() const;
+
+      /**
+       * \brief Force evaluation of the field by its owning \c container without actually changing
+       *        its value.
+       */
       void touch();
-    
+
+      /**
+       * \brief Overloaded member for \c std::ostream insertion
+       */
       virtual void print_on(std::ostream&) const;
     
     protected:
@@ -59,7 +94,7 @@ namespace hugh {
       virtual ~base() =0;
 
       void changed();
-      void notify();
+      void notify ();
     
     };
   
