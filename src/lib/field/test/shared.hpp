@@ -18,12 +18,14 @@
 
 // includes, system
 
-#include <algorithm>          // std::find<>
-#include <boost/mpl/list.hpp> // boost::mpl::list<>
-#include <glm/glm.hpp>        // glm::mat4, glm::vec3
-#include <glm/gtx/io.hpp>     // glm::operator<<
-#include <string>             // std::string
-#include <vector>             // std::vector<>
+#include <algorithm>                // std::find<>
+#include <boost/mpl/joint_view.hpp> // boost::joint_view
+#include <boost/mpl/list.hpp>       // boost::mpl::list<>
+#include <functional>               // std::pair<>
+#include <glm/glm.hpp>              // glm::*
+#include <glm/gtx/io.hpp>           // glm::operator<<
+#include <string>                   // std::string
+#include <vector>                   // std::vector<>
 
 // includes, project
 
@@ -44,7 +46,7 @@ namespace hugh {
     namespace test {
   
       // types, exported (class, enum, struct, union, typedef)
-
+      
       template <typename T>
       class container_single : public field::container {
 
@@ -127,16 +129,17 @@ namespace hugh {
         }
       
       };
-
-      using single_types = boost::mpl::list<
+      
+      using single_types_fundamental = boost::mpl::list<
         bool
-#if 1
+#if defined(HUGH_FIELDS_ALL_TYPES_ENABLED)
         ,signed   char
         ,unsigned char
+        ,wchar_t
         ,char16_t
         ,char32_t
-        ,signed   short
-        ,unsigned short
+        ,signed   short int
+        ,unsigned short int
         ,signed   int
         ,unsigned int
         ,signed   long int
@@ -146,22 +149,46 @@ namespace hugh {
         ,float
         ,double
         ,long double
-        ,std::string
+#endif
+        >;
+      
+      using single_types_stdlib = boost::mpl::list<
+        std::string
+#if defined(HUGH_FIELDS_ALL_TYPES_ENABLED)
         ,std::wstring
-        ,glm::mat4
-        ,glm::vec3
 #endif
         >;
 
-      using multi_types = boost::mpl::list<
+      using single_types_glm = boost::mpl::list<
+        glm::vec2
+#if defined(HUGH_FIELDS_ALL_TYPES_ENABLED)
+        ,glm::vec3
+        ,glm::vec4
+        ,glm::mat2x2
+        ,glm::mat3x3
+        ,glm::mat4x4
+        ,glm::quat
+#endif
+        >;
+      
+      using single_types_all = boost::mpl::joint_view<
+        single_types_fundamental,
+        boost::mpl::joint_view<
+          single_types_stdlib,
+          single_types_glm
+          >::type
+        >::type;
+
+      using multi_types_fundamental = boost::mpl::list<
         std::vector<bool>
-#if 1
+#if defined(HUGH_FIELDS_ALL_TYPES_ENABLED)
         ,std::vector<signed   char>
         ,std::vector<unsigned char>
+        ,std::vector<wchar_t>
         ,std::vector<char16_t>
         ,std::vector<char32_t>
-        ,std::vector<signed   short>
-        ,std::vector<unsigned short>
+        ,std::vector<signed   short int>
+        ,std::vector<unsigned short int>
         ,std::vector<signed   int>
         ,std::vector<unsigned int>
         ,std::vector<signed   long int>
@@ -171,13 +198,36 @@ namespace hugh {
         ,std::vector<float>
         ,std::vector<double>
         ,std::vector<long double>
-        ,std::vector<std::string>
-        ,std::vector<std::wstring>
-        ,std::vector<glm::mat4>
-        ,std::vector<glm::vec3>
 #endif
         >;
-    
+      
+      using multi_types_stdlib = boost::mpl::list<
+        std::vector<std::string>
+#if defined(HUGH_FIELDS_ALL_TYPES_ENABLED)
+        ,std::vector<std::wstring>
+#endif
+        >;
+
+      using multi_types_glm = boost::mpl::list<
+        std::vector<glm::vec2>
+#if defined(HUGH_FIELDS_ALL_TYPES_ENABLED)
+        ,std::vector<glm::vec3>
+        ,std::vector<glm::vec4>
+        ,std::vector<glm::mat2x2>
+        ,std::vector<glm::mat3x3>
+        ,std::vector<glm::mat4x4>
+        ,std::vector<glm::quat>
+#endif
+        >;
+      
+      using multi_types_all = boost::mpl::joint_view<
+        multi_types_fundamental,
+        boost::mpl::joint_view<
+          multi_types_stdlib,
+          multi_types_glm
+          >::type
+        >::type;
+
       // variables, exported (extern)
   
       // functions, inlined (inline)

@@ -40,7 +40,7 @@ namespace {
 #include <boost/test/test_case_template.hpp>
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_connection_update_assign_single, T,
-                              hugh::field::test::single_types)
+                              hugh::field::test::single_types_all)
 {
   using namespace hugh::field;
 
@@ -60,7 +60,7 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_connection_update_assign_single, T
 }
 
 BOOST_AUTO_TEST_CASE_TEMPLATE(test_hugh_field_connection_update_assign_multi, T,
-                              hugh::field::test::multi_types)
+                              hugh::field::test::multi_types_all)
 {
   using namespace hugh::field;
 

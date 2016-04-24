@@ -24,6 +24,9 @@ list(APPEND SRC container.cpp)
 list(APPEND SRC value_multi.cpp)
 list(APPEND SRC value_single.cpp)
 
+#add_definitions(-DHUGH_ALL_TRACE)
+add_definitions(-DHUGH_FIELDS_ALL_TYPES_ENABLED)
+
 set(LIBS)
 list(APPEND LIBS ${LIB})
 list(APPEND LIBS ${Boost_LIBRARIES})
