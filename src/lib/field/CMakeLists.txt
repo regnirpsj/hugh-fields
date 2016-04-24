@@ -27,6 +27,8 @@ list(APPEND SRC single/base.cpp)
 list(APPEND SRC value/multi.cpp)
 list(APPEND SRC value/single.cpp)
 
+#add_definitions(-DHUGH_ALL_TRACE)
+
 set(LIBS)
 list(APPEND LIBS ${HUGH_LIBRARIES})
 list(APPEND LIBS ${Boost_LIBRARIES})
