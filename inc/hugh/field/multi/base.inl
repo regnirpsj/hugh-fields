@@ -19,7 +19,7 @@
 // includes, system
 
 #include <stdexcept> // std::logic_error
-#include <typeinfo>
+#include <typeinfo>  // typeid usage
 
 // includes, project
 
