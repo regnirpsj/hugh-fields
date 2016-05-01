@@ -332,9 +332,16 @@ namespace hugh {
       if (field_list_.end() == found) {
         field_list_.push_back(a);
       } else {
-        throw std::logic_error("hugh::field::container::add: "
-                               "unable to register the same field twice '" + a->name() + "' (" +
-                               std::to_string(reinterpret_cast<unsigned long>(this)) + ")!");
+        std::ostringstream ostr;
+
+        ostr << "hugh::field::container::add: "
+             << "unable to register the same field twice '"
+             << a->name()
+             << "' ("
+             << this
+             << ")!";
+        
+        throw std::logic_error(ostr.str());
       }
     }
   
@@ -349,9 +356,16 @@ namespace hugh {
       if (field_list_.end() != found) {
         field_list_.erase(found);
       } else {
-        throw std::logic_error("hugh::field::container::sub: "
-                               "unable to unregister non-existent field '" + a->name() + "' (" +
-                               std::to_string(reinterpret_cast<unsigned long>(this)) + ")!");
+        std::ostringstream ostr;
+
+        ostr << "hugh::field::container::add: "
+             << "unable to unregister non-existent field '"
+             << a->name()
+             << "' ("
+             << this
+             << ")!";
+        
+        throw std::logic_error(ostr.str());
       }
     }
   
