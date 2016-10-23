@@ -82,7 +82,7 @@ namespace hugh {
       support::clock::time_point last_evaluate_;
     
       explicit container();
-      virtual ~container() =0;
+      virtual ~container() noexcept(false) =0;
 
       virtual void do_touch();
       virtual void do_evaluate();

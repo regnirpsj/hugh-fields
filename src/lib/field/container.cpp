@@ -296,7 +296,7 @@ namespace hugh {
     }
 
     /* virtual */
-    container::~container()
+    container::~container() noexcept(false)
     {
       TRACE("hugh::field::container::~container");
 
