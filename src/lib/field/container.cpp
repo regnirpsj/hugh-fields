@@ -234,7 +234,7 @@ namespace hugh {
     }
 
     void
-    container::changed(base& f)
+    container::changed(field::base& f)
     {
       TRACE("hugh::field::container::changed");
     
@@ -296,7 +296,7 @@ namespace hugh {
     }
 
     /* virtual */
-    container::~container() noexcept(false)
+    container::~container()
     {
       TRACE("hugh::field::container::~container");
 
@@ -316,13 +316,13 @@ namespace hugh {
     }
   
     /* virtual */ void
-    container::do_changed(base&)
+    container::do_changed(field::base&)
     {
       TRACE("hugh::field::container::do_changed");
     }
   
     void
-    container::add(base* a)
+    container::add(field::base* a)
     {
       TRACE("hugh::field::container::add(" + a->name() + ") in (" +
             std::to_string(reinterpret_cast<unsigned long>(this)) + ")");
@@ -346,7 +346,7 @@ namespace hugh {
     }
   
     void
-    container::sub(base* a)
+    container::sub(field::base* a)
     {
       TRACE("hugh::field::container::sub(" + a->name() + ") in (" +
             std::to_string(reinterpret_cast<unsigned long>(this)) + ")");

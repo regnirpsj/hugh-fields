@@ -64,7 +64,7 @@ namespace hugh {
       
       };
 
-      using field_list_type = std::vector<base*>;
+      using field_list_type = std::vector<field::base*>;
     
       static manager& eval_manager();
 
@@ -72,7 +72,7 @@ namespace hugh {
     
       void touch();
       void evaluate();
-      void changed(base&);
+      void changed(field::base&);
     
       virtual void print_on(std::ostream&) const;
     
@@ -82,11 +82,11 @@ namespace hugh {
       support::clock::time_point last_evaluate_;
     
       explicit container();
-      virtual ~container() noexcept(false) =0;
+      virtual ~container() =0;
 
       virtual void do_touch();
       virtual void do_evaluate();
-      virtual void do_changed(base&);
+      virtual void do_changed(field::base&);
     
     private:
 
@@ -96,8 +96,8 @@ namespace hugh {
     
       field_list_type field_list_;
 
-      void add(base*);
-      void sub(base*);
+      void add(field::base*);
+      void sub(field::base*);
     
     };
   
