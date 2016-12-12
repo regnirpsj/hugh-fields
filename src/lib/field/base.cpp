@@ -18,7 +18,6 @@
 
 // includes, system
 
-#include <algorithm>              // std::find<>
 #include <boost/io/ios_state.hpp> // boost::io::ios_all_saver
 #include <iomanip>                // std::dec, std::hex, std::right, std::setw, std::showbase
 #include <ostream>                // std::ostream
